@@ -9,7 +9,7 @@ package icap.columbia.org.mz.mapper;
  */
 public class Attribute {
 
-	private String displayName;
+	private String displayName; 
 
 	private String attribute;
 
