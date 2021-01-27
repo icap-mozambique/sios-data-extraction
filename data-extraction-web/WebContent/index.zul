@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<?page title="SIOS - Data Extraction Web Utility" contentType="text/html;charset=UTF-8"?>
+<?meta charset="utf-8"?>
+<?meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"?>
+<?meta name="description" content=""?>
+<?meta name="author" content=""?>
+<?link rel="icon" href="https://icap.columbia.edu/wp-content/uploads/cropped-Flavicon-ICAP-32x32.png" sizes="32x32" ?>
+<?link rel="icon" href="https://icap.columbia.edu/wp-content/uploads/cropped-Flavicon-ICAP-192x192.png" sizes="192x192" ?>
+<?link rel="apple-touch-icon" href="https://icap.columbia.edu/wp-content/uploads/cropped-Flavicon-ICAP-180x180.png" ?>
+<?link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css"?>
+<?link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/regular.min.css"?>
+<?link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/solid.min.css"?>
+<?link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"?>
+
+<?script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"?>
+<?script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"?>
+<?script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"?>
+
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:n="native">
+	<style>
+		header { padding: 80px 0 30px; }
+
+		section { padding: 80px 60px; }
+
+		.roboto{ font-family: 'Roboto', sans-serif !important; }
+
+
+		.custom-header-panel{ background-color: #276696!important;
+		border-color: ##276696 !important; color: white; }
+
+		body * { font-size: 13px !important; }
+
+
+	</style>
+	<div id="fullPage"
+		apply="icap.columbia.org.mz.controller.IndexController"
+		style="background-color: hsla(50, 60%, 25%, 0.25); margin: 0; padding: 0;">
+		<h:div>
+			<h:nav
+				class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+				id="mainNav">
+				<h:div class="container">
+					<image src="/img/mz-01.png" width="25px"
+						height="25px" />
+					<a sclass="navbar-brand js-scroll-trigger"
+						id="welcome">
+						SIOS - Data Extraction Utility
+					</a>
+					<h:button class="navbar-toggler" type="button"
+						data-toggle="collapse" data-target="#navbarResponsive"
+						aria-controls="navbarResponsive" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<h:span class="navbar-toggler-icon"></h:span>
+					</h:button>
+					<h:div class="collapse navbar-collapse"
+						id="navbarResponsive">
+						<h:ul class="navbar-nav ml-auto">
+							<h:li class="nav-item">
+								<a class="nav-link js-scroll-trigger"
+									iconSclass="fas fa-database" id="data">
+									Data
+								</a>
+							</h:li>
+							<h:li class="nav-item">
+								<a class="nav-link js-scroll-trigger"
+									iconSclass="fas fa-question" id="help">
+									Help
+								</a>
+							</h:li>
+							<h:li class="nav-item">
+								<a class="nav-link js-scroll-trigger"
+									iconSclass="fas fa-info" id="about">
+									About
+								</a>
+							</h:li>
+						</h:ul>
+					</h:div>
+				</h:div>
+			</h:nav>
+		</h:div>
+		<h:div class="container">
+			<h:section>
+				<div id="divWelcome" visible="true">
+					<h:header class="bg-default text-white">
+						<h:div class="text-center">
+							<h:h4 style="color:black;">
+								Bem vindo a página de extração de dados
+								do SIOS
+							</h:h4>
+							<h:img src="/img/extProcess.jpg" width="40%"
+								height="40%" />
+						</h:div>
+					</h:header>
+					<h:div>
+						<h:p class="lead h6">
+							Esta página foi desenvolvida com o objectivo
+							de extrair os dados do SIOS - Sistema de
+							Informação de Observação de Saúde. em caso
+							de dúvidas ou suporte envie um e-mail para:
+							<h:a
+								href="mailto:supporte@cumc.columbia.edu">
+								supporte@cumc.columbia.edu
+							</h:a>
+						</h:p>
+					</h:div>
+				</div>
+
+				<div id="divData" visible="false">
+					<h:div class="row">
+						<h:div
+							class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+							<vbox hflex="1">
+								<groupbox mold="3d">
+									<caption label="Authentication" />
+									<grid>
+										<rows>
+											<row>
+												<vbox hflex="1">
+													<label
+														value="Username *" />
+													<textbox hflex="1"
+														id="username" />
+												</vbox>
+											</row>
+											<row>
+												<vbox hflex="1">
+													<label
+														value="Password *" />
+													<textbox hflex="1"
+														type="password" id="password" />
+												</vbox>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+								<groupbox mold="3d" open="false">
+									<caption label="Organisation Unit" />
+									<h:h6>
+										please select one or more
+										organisation unity
+									</h:h6>
+									<grid>
+										<rows>
+											<row>
+												<vbox hflex="1">
+													<label
+														value="Provincia *" />
+													<combobox hflex="1"
+														id="cbxProvincia" autocomplete="true" autodrop="true"
+														buttonVisible="true">
+														<comboitem
+															label="Todas" value="ALL" />
+														<comboitem
+															label="Cabo Delgado" value="jtbNkyjlMiW" />
+														<comboitem
+															label="Gaza" value="N2EC0qBdqEd" />
+														<comboitem
+															label="Inhambane" value="tvbFMrGCP2B" />
+														<comboitem
+															label="Manica" value="lgrWtt8CHwq" />
+														<comboitem
+															label="Maputo Cidade" value="pbw2C4K3AOI" />
+														<comboitem
+															label="Maputo Provincia" value="oGGez9trTkg" />
+														<comboitem
+															label="Nampula" value="xwuEz9H0X47" />
+														<comboitem
+															label="Niassa" value="J90FkJ5BKOS" />
+														<comboitem
+															label="Sofala" value="IF5wtACmmeg" />
+														<comboitem
+															label="Tete" value="RgZ7HNJe2WX" />
+														<comboitem
+															label="Zambézia" value="OZYh6DpSqx4" />
+													</combobox>
+												</vbox>
+											</row>
+											<row>
+												<vbox hflex="1">
+													<label
+														value="Level" />
+													<radiogroup
+														id="level">
+														<radio
+															label="Provincia" selected="true" value="P" />
+														<radio
+															label="Unidade Sanitaria" value="US" />
+													</radiogroup>
+												</vbox>
+											</row>
+
+											<row
+												id="rowUnidadeSanitaria" visible="false">
+												<vbox hflex="1">
+													<label
+														value="Unidade Sanitária" />
+													<listbox
+														id="lbxUnidadeSanitarias" mold="paging" multiple="true"
+														pageSize="3" checkmark="true">
+														<listhead>
+															<listheader
+																label="Seleccione a US" sort="auto(displayFormName)" />
+														</listhead>
+														<template
+															name="model">
+															<listitem>
+																
+																<listcell
+																	label="${each.displayFormName}" />
+															</listitem>
+														</template>
+													</listbox>
+												</vbox>
+											</row>
+										</rows>
+									</grid>
+								</groupbox>
+							</vbox>
+						</h:div>
+
+						<h:div
+							class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+							<groupbox mold="3d" open="false">
+								<caption label="Filters" />
+								<h:h6>
+									Leave all fields blank if you want
+									all data without filters
+								</h:h6>
+								<grid>
+									<rows>
+										<row>
+											<vbox hflex="1">
+												<label value="Programa" />
+												<textbox
+													value="Ficha de Internamento COVID-19" readonly="true"
+													hflex="1" />
+											</vbox>
+										</row>
+										<row>
+											<vbox hflex="1">
+												<label value="Período" />
+												<hbox hflex="1">
+													<datebox
+														format="dd/MM/yyyy" id="startDate"/>
+													<label value="á" />
+													<datebox
+														format="dd/MM/yyyy" id="endDate"/>
+												</hbox>
+											</vbox>
+										</row>
+										<row>
+											<vbox hflex="1">
+												<label value="Stages" />
+												<listbox id="lbxStages"
+													hflex="1" multiple="true" checkmark="true"
+													pagingPosition="bottom" mold="paging" pageSize="3">
+													<listhead
+														sizable="true">
+														<listheader
+															label="Stage Name" sort="auto" />
+													</listhead>
+													<listitem
+														label="Informações Gerais" value="ifzxO5muNbU" />
+													<listitem
+														label="Nota de entrada (História da doença actual)"
+														value="cKzKguL2Ez5" />
+													<listitem
+														label="Dados Epidemiológicos, Sinais na admissão"
+														value="kfvHXCjyCId" />
+													<listitem
+														label="Factores de riscos ou comorbidades"
+														value="wSZ0HVo5RGC" />
+													<listitem
+														label="Parto durante o internamento" value="HHgPs0aycqE" />
+													<listitem
+														label="Evolução clínica, Analítica, Tratamento, Seguimento do paciente"
+														value="Ceo9FXo43fS" />
+													<listitem
+														label="CARDEX - Medicação" value="graGX6qichw" />
+													<listitem
+														label="CARDEX - Cuidados de Enfermagem"
+														value="Uee2vcakk9k" />
+													<listitem
+														label="Diário de Enfermagem" value="zeikCB6j8ra" />
+													<listitem
+														label="Desfecho" value="NvfvuGH1kjA" />
+												</listbox>
+											</vbox>
+										</row>
+									</rows>
+								</grid>
+							</groupbox>
+						</h:div>
+					</h:div>
+					<h:div class="row mt-3">
+						<h:div class="col-12 text-right">
+							<label sclass="h6"
+								value="* your file will automaticaly downloaded after extraction was completed" />
+						</h:div>
+						<h:div class="col-12">
+							<h:div class="form-group text-right">
+								<button id="btnClear"
+									sclass="btn btn-secondary" label="Clear"
+									iconSclass="fas fa-redo" />
+								<button id="btnGetdata"
+									sclass="btn btn-success" label="Get Data"
+									iconSclass="fas fa-database" />
+							</h:div>
+						</h:div>
+					</h:div>
+				</div>
+
+				<div id="divHelp" visible="false"></div>
+
+				<div id="divAbout" visible="false"></div>
+			</h:section>
+		</h:div>
+
+		<h:footer class="py-2 bg-dark">
+			<h:div class="container">
+				<h:p class="m-0 text-center text-white">
+					<h:i class="far fa-copyright"></h:i>
+					ICAP Moçambique, 2021
+				</h:p>
+			</h:div>
+		</h:footer>
+	</div>
+</zk>

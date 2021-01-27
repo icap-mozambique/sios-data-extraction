@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+	</device-config>
+	
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>iceblue_c</value>
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.theme.fontFamilyT</name>
+		<value>Verdana, Tahoma, Arial, Helvetica, sans-serif</value>
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeM</name>
+		<value>12px</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeS</name>
+		<value>10px</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeXS</name>
+		<value>9px</value>
+	</library-property>
+
+	<library-property>
+		<name>org.zkoss.zul.progressbox.position</name>
+		<value>center</value>
+	</library-property>
+</zk>
