@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.zkoss.zk.ui.Component;
-import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -112,13 +111,15 @@ public class IndexController extends SelectorComposer<Component> {
 	@SuppressWarnings("unchecked")
 	@Listen("onSelect = #cbxProvincia")
 	public void changeProvincia() {
-
+		
 		if (username.getValue() == null || username.getValue().isEmpty()) {
-			throw new WrongValueException(username, "Campo inválido!");
+			Messagebox.show("Invalid username", "Error", Messagebox.OK, Messagebox.ERROR);
+			return;
 		}
 
 		if (password.getValue() == null | password.getValue().isEmpty()) {
-			throw new WrongValueException(password, "Campo inválido!");
+			Messagebox.show("Invalid password", "Error", Messagebox.OK, Messagebox.ERROR);
+			return;
 		}
 
 		SIOSUtil.authenticate(username.getValue(), password.getValue());
@@ -136,9 +137,11 @@ public class IndexController extends SelectorComposer<Component> {
 
 			ListModelList<Object> listModel = new ListModelList(
 					(unidades != null) ? unidades : new ArrayList<OrganizationUnity>());
+
 			lbxUnidadeSanitarias.setModel(listModel);
 			lbxUnidadeSanitarias.setMultiple(true);
 			lbxUnidadeSanitarias.setCheckmark(true);
+
 			lbxUnidadeSanitarias.invalidate();
 		} else {
 			rowUnidadeSanitaria.setVisible(false);
@@ -150,11 +153,13 @@ public class IndexController extends SelectorComposer<Component> {
 	public void changeLevel() {
 
 		if (username.getValue() == null || username.getValue().isEmpty()) {
-			throw new WrongValueException(username, "Campo inválido!");
+			Messagebox.show("Invalid username", "Error", Messagebox.OK, Messagebox.ERROR);
+			return;
 		}
 
 		if (password.getValue() == null | password.getValue().isEmpty()) {
-			throw new WrongValueException(password, "Campo inválido!");
+			Messagebox.show("Invalid password", "Error", Messagebox.OK, Messagebox.ERROR);
+			return;
 		}
 
 		SIOSUtil.authenticate(username.getValue(), password.getValue());
@@ -175,13 +180,15 @@ public class IndexController extends SelectorComposer<Component> {
 
 				ListModelList<Object> listModel = new ListModelList(
 						(unidades != null) ? unidades : new ArrayList<OrganizationUnity>());
+
 				lbxUnidadeSanitarias.setModel(listModel);
 				lbxUnidadeSanitarias.setMultiple(true);
 				lbxUnidadeSanitarias.setCheckmark(true);
+
 				lbxUnidadeSanitarias.invalidate();
 			} else {
-
-				throw new WrongValueException(cbxProvincia, "Campo inválido!");
+				Messagebox.show("Please select Provincia", "Warning", Messagebox.OK, Messagebox.EXCLAMATION);
+				return;
 			}
 		} else {
 			rowUnidadeSanitaria.setVisible(false);
@@ -242,7 +249,8 @@ public class IndexController extends SelectorComposer<Component> {
 
 					List<String> ids = organizationUnities.stream()
 							.map(organizationUnitie -> organizationUnitie.getId()).collect(Collectors.toList());
-					param_prv = (String[]) ids.toArray();
+					param_prv = new String[ids.size()];
+					param_prv = ids.toArray(param_prv);
 
 				}
 
@@ -279,15 +287,15 @@ public class IndexController extends SelectorComposer<Component> {
 	private boolean validate() {
 
 		if (username.getValue() == null || username.getValue().isEmpty()) {
-			throw new WrongValueException(username, "Campo inválido!");
+			Messagebox.show("Invalid username", "Error", Messagebox.OK, Messagebox.ERROR);
 		}
 
 		if (password.getValue() == null | password.getValue().isEmpty()) {
-			throw new WrongValueException(password, "Campo inválido!");
+			Messagebox.show("Invalid password", "Error", Messagebox.OK, Messagebox.ERROR);
 		}
 
 		if (cbxProvincia.getSelectedItem() == null) {
-			throw new WrongValueException(cbxProvincia, "Campo inválido!");
+			Messagebox.show("Select Provincia", "Error", Messagebox.OK, Messagebox.ERROR);
 		}
 		return true;
 	}
